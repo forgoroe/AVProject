@@ -16,17 +16,17 @@ var intro = {
   },
 
   bindEvents: function(){
-    this.btn.addEventListener('click', this.animateIntro.bind(this));
+   // this.btn.addEventListener('click', this.animateIntro.bind(this));
   },
 
   animateIntro: function(){
-      var str = "A volte..."
+      var str = "A volte"
 
-      var delay = 6;
+      var delay = 8;
       var count = randomPhraseCreator.getShortestPhraseLength()*2;
 
       this.btn.classList.remove('show');
-      
+
       var gen = setInterval(function() {
         intro.el.setAttribute('data-before', randomPhraseCreator.getRandomPhrase());
         intro.el.setAttribute('data-after', randomPhraseCreator.getRandomPhrase());
@@ -40,16 +40,17 @@ var intro = {
           count--;
           if(count === -1) {
             clearInterval(gen);
-            intro.render();
+            intro.el.removeAttribute('data-before');
+            intro.el.removeAttribute('data-after');
+            intro.btn.classList.add('show');
           }
         }
       }, 180);
   },
 
   render: function(){
-    this.el.removeAttribute('data-before');
-    this.el.removeAttribute('data-after');
-    this.btn.classList.add('show');
+    
+    
   }
 
 };

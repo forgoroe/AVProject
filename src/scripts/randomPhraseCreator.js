@@ -2,7 +2,7 @@ export var randomPhraseCreator = (function(){
   
   var words = ("Dolce volto, occhi, sorriso, capelli soffici, adorabile, "+
          "bella, attraente, piccola, sicurezza, una vita condivisa, parlare, "+
-         "risate, affetto, mano nella mano, abbraccio di 5 minuti, stima, speranza, "+
+         "risate, affetto, mano nella mano, abbraccio di cinque minuti, stima, speranza, "+
          "fiducia contagiosa, mistero, voglia di vivere, conoscere ancora, tutta da vivere....");
   
   var amountOfPhrases = 3;
@@ -36,6 +36,10 @@ export var randomPhraseCreator = (function(){
     return shortest.length;
   };
 
+  function getDictionary(){
+    return dictionary;
+  }
+
   function getRandomPhrase(){
     var randomPhrase = _randomPhraseCreator(dictionary, amountOfPhrases);
     return randomPhrase.trim();
@@ -47,8 +51,8 @@ export var randomPhraseCreator = (function(){
 
   return {
     getRandomPhrase: getRandomPhrase,
-    getShortestPhraseLength: getShortestPhraseLength
-
+    getShortestPhraseLength: getShortestPhraseLength,
+    getDictionary: getDictionary
   }
 
 })();
