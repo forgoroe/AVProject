@@ -4,60 +4,51 @@ export var randomPhraseCreator = (function(){
          "bella, attraente, piccola, sicurezza, una vita condivisa, parlare, "+
          "risate, affetto, mano nella mano, abbraccio di 5 minuti, stima, speranza, "+
          "fiducia contagiosa, mistero, voglia di vivere, conoscere ancora, tutta da vivere....");
+  
+  var amountOfPhrases = 3;
+  var dictionary = _createDictionary(words);
+  var shortestLength = _findShortestPhraseLength(dictionary);  
 
-  function createDictionary(text){
-    var dictionary = []
-    dictionary = text.trim().split(',');
+  function _createDictionary(text){
+    dictionary = [];
+    dictionary = text.split(',');
 
     return dictionary;
   };
 
-  function randomIndexOf(dictionArg){
+  function _randomIndexOf(dictionArg){
     return Math.floor(Math.random() * dictionArg.length)
   };
 
-  function randomPhraseCreator(dictionArg, amt){
+  function _randomPhraseCreator(dictionArg, amt){
       var randomPhrase = '';
       for(var i = 0; i < amt; i++) {
-        randomPhrase += dictionArg[randomIndexOf(dictionArg)];
+        randomPhrase += " " + dictionArg[_randomIndexOf(dictionArg)];
       }
       return randomPhrase;
   };
 
-  var myDictionary = createDictionary(words);
-  var amountOfPhrases = 2;
+  function _findShortestPhraseLength(dictionaryArg){
+    var shortest = dictionaryArg.reduce(function(a, b) {
+    return a.length <= b.length ? a : b;
+    });
+    console.log(shortest);
+    return shortest.length;
+  };
 
-  var randomPhrase = randomPhraseCreator(myDictionary, amountOfPhrases);
+  function getRandomPhrase(){
+    var randomPhrase = _randomPhraseCreator(dictionary, amountOfPhrases);
+    return randomPhrase.trim();
+  };
+
+  function getShortestPhraseLength(){
+    return shortestLength;  
+  };
 
   return {
-    randomPhrase: randomPhrase
+    getRandomPhrase: getRandomPhrase,
+    getShortestPhraseLength: getShortestPhraseLength
+
   }
 
 })();
-/*
-  function(str) {
-      var count = 10;
-      var delay = 4;
-      
-      btn.classList.remove('show');
-      el.innerHTML = '';
-      
-      var gen = setInterval(function() {
-        el.setAttribute('data-before', randomPhrase(count));
-        el.setAttribute('data-after', randomPhrase(count));
-        if(delay > 0) {
-          delay--;
-        }
-        else {
-          if(count < str.length) {
-            el.innerHTML += str[str.length - count-1];
-          }
-          count--;
-          if(count === -1) {
-            clearInterval(gen);
-            showButton();
-          }
-        }
-      }, 195);
-    }
-    */
