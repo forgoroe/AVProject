@@ -32,7 +32,6 @@ export var randomPhraseCreator = (function(){
     var shortest = dictionaryArg.reduce(function(a, b) {
     return a.length <= b.length ? a : b;
     });
-    console.log(shortest);
     return shortest.length;
   };
 

@@ -1,4 +1,6 @@
 body {
+  margin-left: 20px;
+  margin-right: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,8 +12,11 @@ body {
   -webkit-animation: colorChange 5s;
 }
 
+p{
+  opacity: 1;
+}
+
 h1 {
-  font-size: 6vw;
   color: #FFFFFF;
 }
 h1:before {
@@ -27,11 +32,16 @@ h1:after {
 
 #subtitle{
   color: #361E1E;
-  opacity: 1;
-    animation: fadeIn 5s linear;
+  opacity: 0;
+
+  animation:fadeIn;
+  animation-duration: 2s;
+  animation-delay: 3.7s;
+  animation-fill-mode: forwards;
 }
 
 .button {
+  border-radius: 3px;
   padding: 20px 40px;
   font: inherit;
   color: #140d09;
@@ -40,11 +50,20 @@ h1:after {
   transform: translate3d(0, 50px, 0);
   transition: all 0.3s cubic-bezier(0, 1, 0, 1);
   cursor: pointer;
+  text-align: center;
 }
 .button.show {
   opacity: 1;
    animation: fadeIn 1s linear;
   transform: translate3d(0, 30px, 0);
+}
+
+.yourTurn{
+  opacity: 0;
+
+  animation:fadeIn;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
 }
 
 @keyframes colorChange{
@@ -53,8 +72,8 @@ h1:after {
 }
 
 @keyframes fadeIn{
-  0%,75% { opacity: 0 }
-  100% { opacity: 1 }
+  0% { opacity: 0;}
+  100% { opacity: 1;}
 }
 
 /*TEST MACCARONI*/

@@ -1,4 +1,5 @@
 import { randomPhraseCreator } from "./scripts/randomPhraseCreator";
+import { contentGrabber } from "./scripts/contentGrabber";
 
 (function(){
 
@@ -16,7 +17,7 @@ var intro = {
   },
 
   bindEvents: function(){
-   // this.btn.addEventListener('click', this.animateIntro.bind(this));
+   this.btn.addEventListener('click', this.insertNextSegment);
   },
 
   animateIntro: function(){
@@ -48,9 +49,79 @@ var intro = {
       }, 180);
   },
 
-  render: function(){
-    
-    
+  /*viewNextSegment: function(){
+    var contentLength = contentGrabber.getContentLength();
+    console.log(contentLength);
+    document.body.innerHTML = '';
+    for(var i=0; i<contentLength/3; i++){
+      document.body.innerHTML += '<p>' + contentGrabber.giveNext().text +'</p>';
+    }
+  }*/
+
+  emptyPage: function(){
+    document.body.innerHTML = '';
+  },
+
+  setUpElements: function(){
+    var containerDiv = this.setUpContainer();
+    /*var rowDiv = this.setUpRow(containerDiv);
+    var colDiv = this.setUpCol(rowDiv);*/
+  },
+
+  setUpContainer: function(){
+    var containerDiv = document.createElement('div');
+    containerDiv.classList.add('container');
+
+    document.body.appendChild(containerDiv);
+
+    return containerDiv;
+  },
+
+  setUpRow: function(container){
+    var rowDiv = document.createElement('div');
+    rowDiv.classList.add('row');
+
+    container.appendChild(rowDiv);
+
+    return rowDiv;
+  },
+
+  setUpCol: function(row){
+    var colDiv = document.createElement('div');
+    colDiv.classList.add('col-xs-12');
+
+    row.appendChild(colDiv);
+
+    return colDiv;
+  },
+
+  setUpH2: function(col, id){
+    var content = document.createElement('p');
+    content.setAttribute('id', id);
+
+    col.appendChild(content);
+
+    return content;
+  },
+
+  insertNextSegment: function(){
+    intro.emptyPage();
+    intro.setUpElements();
+
+    var contentLength = contentGrabber.getContentLength(); 
+    //Above^: amount of content to display (currently all)
+    var containerDiv = document.getElementsByClassName('container')[0];
+
+    for(var i=0; i<10; i++){
+
+      var rowDiv = intro.setUpRow(containerDiv);
+      var colDiv = intro.setUpCol(rowDiv);
+      var content = intro.setUpH2(colDiv, i);
+
+      var nextUp = contentGrabber.giveNext().text;
+
+      content.innerHTML = nextUp;
+    }
   }
 
 };
