@@ -13,13 +13,12 @@ var intro = {
 
   cacheIntroDom: function(){
     this.el = document.getElementById('aVolte');
-    this.btn = document.getElementsByClassName('button')[0];
+    this.btn = document.getElementsByClassName('btn-default')[0];
     this.body = document.body;
   },
 
   cacheContainer: function(containerNode){
     this.container = containerNode;
-    console.log(this.container);
   },
 
   bindEvents: function(){
@@ -29,12 +28,6 @@ var intro = {
   bindEventToContent: function(nodeToBind){
     nodeToBind.addEventListener('click', this.insertNextSegment);
     nodeToBind.classList.add('pointerCursor');
-  },
-
-  unbindEventOfPreviousContent: function(nodeToUnbind){
-    nodeToUnbind.removeEventListener('click', this.insertNextSegment);
-    nodeToUnbind.className += ' animated bounce';
-    nodeToUnbind.classList.remove('pointerCursor');
   },
 
   animateIntro: function(){
@@ -67,13 +60,11 @@ var intro = {
   },
 
   emptyPage: function(){
-    document.body.innerHTML = '';
+    $('body').empty();
   },
 
   setUpElements: function(){
-    var containerDiv = this.setUpContainer();
-    /*var rowDiv = this.setUpRow(containerDiv);
-    var colDiv = this.setUpCol(rowDiv);*/
+    this.setUpContainer();
   },
 
   setUpContainer: function(){
@@ -90,7 +81,7 @@ var intro = {
 
   setUpRow: function(container){
     var rowDiv = document.createElement('div');
-    rowDiv.classList.add('row');
+    $(rowDiv).addClass('row');
 
     container.appendChild(rowDiv);
 
@@ -106,64 +97,48 @@ var intro = {
     return colDiv;
   },
 
-  setUpH2: function(col, id){
-    var h2 = document.createElement('h2');
-    h2.setAttribute('id', id);
-    h2.classList.add('disable-select');
-    
-    if(id==1){
-      h2.classList.add('firstTurn');
-    } else{
-      h2.classList.add('yourTurn');
-    }
+  setUpH3: function(col, id){
+    var h3 = document.createElement('h3');
+    h3.setAttribute('id', id);
+    h3.classList.add('disable-select');
 
-    col.appendChild(h2);
+    col.appendChild(h3);
 
-    return h2;
+    return h3;
+  },
+
+  scrollTo: function(elementId){
+    $("#"+elementId).click(function() {
+    $('html, body').animate({
+        scrollTop: $("#"+elementId).offset().top
+    }, 2000);
+  });
   },
 
   insertInitialSegment: function(){
     intro.emptyPage();
     intro.setUpElements();
 
-    var containerDiv = intro.container;
-
-    var rowDiv = intro.setUpRow(containerDiv);
+    var rowDiv = intro.setUpRow(intro.container);
     var colDiv = intro.setUpCol(rowDiv);
-    var h2 = intro.setUpH2(colDiv, 1);
+    var h3 = intro.setUpH3(colDiv, 1);
 
     var nextUp = contentGrabber.giveNext().text;
-    h2.innerHTML = nextUp;
+    $('h3').html(nextUp);
 
     intro.body.setAttribute('class', 'neutralBackground');
-    intro.bindEventToContent(h2);
+    intro.bindEventToContent(h3);
     
     },
 
   insertNextSegment: function(){
-
     var idOfPrevious = contentGrabber.getContentGrabbed();
 
-    intro.unbindEventOfPreviousContent(document.getElementById(idOfPrevious));
-
-    var containerDiv = intro.container;
-    var rowDiv = intro.setUpRow(containerDiv);
-    var colDiv = intro.setUpCol(rowDiv);
-    var h2 = intro.setUpH2(colDiv, idOfPrevious+1);
-
-    var nextUp = contentGrabber.giveNext().text;
-    h2.innerHTML = nextUp;
-
-    
-    intro.bindEventToContent(h2);
-
-    
-    console.log('next element inserted');
-    window.scrollTo(0,document.body.scrollHeight);
-  },
-
-  styleSegment: function(segmentId){
-
+    if(idOfPrevious < contentGrabber.getContentLength()){
+      var nextUp = contentGrabber.giveNext().text;
+      $('h3').attr("id", idOfPrevious+1);
+      $('h3').html(nextUp);
+    }
   },
 
   }
