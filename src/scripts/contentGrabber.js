@@ -4,23 +4,27 @@ export var contentGrabber = (function(){
 	var contentGrabbed = 0;
 	
 	function giveNext(id){
-		if(id){
+		if(id && id < content.length){
 			return content.find((item)=>item.id == id);
-		} else{
-			if(contentGrabbed < content.length){
+		} else if(contentGrabbed < content.length -1){
 			contentGrabbed++;
+			console.log(contentGrabbed);
 			return content[contentGrabbed];
-		}
-		}
+			}
 	};
 
 	function getContentLength(){
 		return content.length -1;
 	};
 
+	function getContentGrabbed(){
+		return contentGrabbed;
+	}
+
 	return {
 		giveNext: giveNext,
-		getContentLength: getContentLength
+		getContentLength: getContentLength,
+		getContentGrabbed: getContentGrabbed
 
 	};
 })();

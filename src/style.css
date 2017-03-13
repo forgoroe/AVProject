@@ -12,9 +12,6 @@ body {
   -webkit-animation: colorChange 5s;
 }
 
-p{
-  opacity: 1;
-}
 
 h1 {
   color: #FFFFFF;
@@ -58,12 +55,38 @@ h1:after {
   transform: translate3d(0, 30px, 0);
 }
 
+.disable-select {
+  -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
+}
+
+.firstTurn {
+  opacity: 0;
+  
+  animation:fadeIn;
+  animation-duration: 2s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+}
+
 .yourTurn{
   opacity: 0;
 
   animation:fadeIn;
   animation-duration: 2s;
   animation-fill-mode: forwards;
+}
+
+.neutralBackground{
+  animation: toNeutralBackground;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+.pointerCursor{
+  cursor: pointer;
 }
 
 @keyframes colorChange{
@@ -74,6 +97,18 @@ h1:after {
 @keyframes fadeIn{
   0% { opacity: 0;}
   100% { opacity: 1;}
+}
+
+@-moz-keyframes toNeutralBackground
+{
+0%   {background:#02E9D0;}
+100%  {background: white;}
+}
+ 
+    @-webkit-keyframes toNeutralBackground
+{
+0%   {background:#02E9D0;}
+100%  {background: white;}
 }
 
 /*TEST MACCARONI*/

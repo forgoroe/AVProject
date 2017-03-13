@@ -6,18 +6,35 @@ import { contentGrabber } from "./scripts/contentGrabber";
 var intro = {
 
   init: function(){
-    this.cacheDom();
+    this.cacheIntroDom();
     this.bindEvents();
     this.animateIntro();
   },
 
-  cacheDom: function(){
+  cacheIntroDom: function(){
     this.el = document.getElementById('aVolte');
     this.btn = document.getElementsByClassName('button')[0];
+    this.body = document.body;
+  },
+
+  cacheContainer: function(containerNode){
+    this.container = containerNode;
+    console.log(this.container);
   },
 
   bindEvents: function(){
-   this.btn.addEventListener('click', this.insertNextSegment);
+   this.btn.addEventListener('click', this.insertInitialSegment);
+  },
+
+  bindEventToContent: function(nodeToBind){
+    nodeToBind.addEventListener('click', this.insertNextSegment);
+    nodeToBind.classList.add('pointerCursor');
+  },
+
+  unbindEventOfPreviousContent: function(nodeToUnbind){
+    nodeToUnbind.removeEventListener('click', this.insertNextSegment);
+    nodeToUnbind.className += ' animated bounce';
+    nodeToUnbind.classList.remove('pointerCursor');
   },
 
   animateIntro: function(){
@@ -49,15 +66,6 @@ var intro = {
       }, 180);
   },
 
-  /*viewNextSegment: function(){
-    var contentLength = contentGrabber.getContentLength();
-    console.log(contentLength);
-    document.body.innerHTML = '';
-    for(var i=0; i<contentLength/3; i++){
-      document.body.innerHTML += '<p>' + contentGrabber.giveNext().text +'</p>';
-    }
-  }*/
-
   emptyPage: function(){
     document.body.innerHTML = '';
   },
@@ -70,7 +78,10 @@ var intro = {
 
   setUpContainer: function(){
     var containerDiv = document.createElement('div');
+
     containerDiv.classList.add('container');
+
+    this.cacheContainer(containerDiv);
 
     document.body.appendChild(containerDiv);
 
@@ -96,35 +107,66 @@ var intro = {
   },
 
   setUpH2: function(col, id){
-    var content = document.createElement('p');
-    content.setAttribute('id', id);
+    var h2 = document.createElement('h2');
+    h2.setAttribute('id', id);
+    h2.classList.add('disable-select');
+    
+    if(id==1){
+      h2.classList.add('firstTurn');
+    } else{
+      h2.classList.add('yourTurn');
+    }
 
-    col.appendChild(content);
+    col.appendChild(h2);
 
-    return content;
+    return h2;
   },
 
-  insertNextSegment: function(){
+  insertInitialSegment: function(){
     intro.emptyPage();
     intro.setUpElements();
 
-    var contentLength = contentGrabber.getContentLength(); 
-    //Above^: amount of content to display (currently all)
-    var containerDiv = document.getElementsByClassName('container')[0];
+    var containerDiv = intro.container;
 
-    for(var i=0; i<10; i++){
+    var rowDiv = intro.setUpRow(containerDiv);
+    var colDiv = intro.setUpCol(rowDiv);
+    var h2 = intro.setUpH2(colDiv, 1);
 
-      var rowDiv = intro.setUpRow(containerDiv);
-      var colDiv = intro.setUpCol(rowDiv);
-      var content = intro.setUpH2(colDiv, i);
+    var nextUp = contentGrabber.giveNext().text;
+    h2.innerHTML = nextUp;
 
-      var nextUp = contentGrabber.giveNext().text;
+    intro.body.setAttribute('class', 'neutralBackground');
+    intro.bindEventToContent(h2);
+    
+    },
 
-      content.innerHTML = nextUp;
-    }
+  insertNextSegment: function(){
+
+    var idOfPrevious = contentGrabber.getContentGrabbed();
+
+    intro.unbindEventOfPreviousContent(document.getElementById(idOfPrevious));
+
+    var containerDiv = intro.container;
+    var rowDiv = intro.setUpRow(containerDiv);
+    var colDiv = intro.setUpCol(rowDiv);
+    var h2 = intro.setUpH2(colDiv, idOfPrevious+1);
+
+    var nextUp = contentGrabber.giveNext().text;
+    h2.innerHTML = nextUp;
+
+    
+    intro.bindEventToContent(h2);
+
+    
+    console.log('next element inserted');
+    window.scrollTo(0,document.body.scrollHeight);
+  },
+
+  styleSegment: function(segmentId){
+
+  },
+
   }
-
-};
 
   intro.init();
 
