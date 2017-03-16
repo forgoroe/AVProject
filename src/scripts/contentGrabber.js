@@ -8,9 +8,9 @@ export var contentGrabber = (function(){
 			return content.find((item)=>item.id == id);
 		} else if(contentGrabbed < content.length -1){
 			contentGrabbed++;
-			console.log(contentGrabbed);
 			return content[contentGrabbed];
 			}
+			
 	};
 
 	function getContentLength(){

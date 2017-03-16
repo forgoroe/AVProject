@@ -9,8 +9,11 @@ body {
   height: 100vh;
   font-family: 'Anonymous Pro', monospace;
   text-align: center;
-  background-color: #02E9D0;
-  -webkit-animation: colorChange 5s;
+  -webkit-animation: colorChange 4s;
+  animation-fill-mode: forwards;
+
+
+ 
 }
 
 
@@ -28,7 +31,16 @@ h1:after {
   opacity: 0.4;
 }
 
+h3[id="1"]{
+
+}
+
+h3[id="2"]{
+ /* animation-iteration-count: infinite;*/
+}
+
 #subtitle{
+  margin-left: 25px;
   color: #361E1E;
   opacity: 0;
   animation:fadeIn;
@@ -40,10 +52,13 @@ h1:after {
 .button {
 
   opacity: 0;
-  width:100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 50px 10px 50px;
   cursor: pointer;
   text-align: center;
 }
+
 .button.show {
   opacity: 1;
    animation: fadeIn 1s linear;
@@ -67,7 +82,6 @@ h1:after {
 }
 
 .yourTurn{
-  opacity: 0;
 
   animation:fadeIn;
   animation-duration: 2s;
@@ -89,8 +103,12 @@ h1:after {
 }
 
 @keyframes colorChange{
-  from {background-color: #001BDE;}
-  to {background-color: #02E9D0;}
+  0%, 100% {
+    background-color: #00D2FF;
+  }
+  50% {
+    background-color:  #0569FF;
+  }
 }
 
 @keyframes fadeIn{
@@ -100,13 +118,13 @@ h1:after {
 
 @-moz-keyframes toNeutralBackground
 {
-0%   {background:#02E9D0;}
+0%   {background: #00D2FF;}
 100%  {background: white;}
 }
  
     @-webkit-keyframes toNeutralBackground
 {
-0%   {background:#02E9D0;}
+0%   {background: #00D2FF}
 100%  {background: white;}
 }
 

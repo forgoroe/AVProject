@@ -46,7 +46,7 @@ export var content = [
 
 {
 	id: 9,
-	text: "Amoreeeeeeeeeee."
+	text: "Amoreeeeeeeeeee"
 },
 
 {
@@ -97,7 +97,7 @@ export var content = [
 
 {
 	id: 19,
-	text: "Potrebbe essere che mi manca l'associazione tra 'lei' e la parola 'amore?"
+	text: "Potrebbe essere che mi manca l'associazione tra 'lei' e la parola 'amore'?"
 },
 
 {
@@ -112,17 +112,27 @@ export var content = [
 
 {
 	id: 22,
-	text: "Associarla ad una definizione sembrerebbe un peggioramento. Vivendo insieme estremamente piccoli momenti di vita insieme e condividendo ciò che sembrano attimi altrettanto insignificanti, vinciamo ricordi memorabili senza alcuna definizione di amore in mezzo ai piedi."
+	text: "Associarla ad una definizione sembrerebbe un peggioramento."
 },
 
 {
 	id: 23,
-	text: "Mettere una definizione o voler riassumere qualcosa che al solo pensiero mi inonda di creatività, voglia di fare, conoscere e speranza, potrebbe diventare ciò che mi impedirebbe di esprimere di più, fare di più, vivere di più"
+	text: "Vivendo insieme estremamente piccoli momenti di vita insieme e condividendo ciò che sembrano attimi altrettanto insignificanti, vinciamo ricordi memorabili senza alcuna definizione di amore in mezzo ai piedi."
 },
 
 {
 	id: 24,
+	text: "Mettere una definizione o voler riassumere qualcosa che al solo pensiero mi inonda di creatività, voglia di fare, conoscere e speranza, potrebbe diventare ciò che mi impedirebbe di esprimere di più, fare di più, vivere di più"
+},
+
+{
+	id: 25,
 	text: "e cosa piú importante: vedere tutto come una possibilità in attesa di essere colta."
+},
+
+{
+	id: 26,
+	text: "Fin!"
 }
 
 ];
