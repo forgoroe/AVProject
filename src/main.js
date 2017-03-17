@@ -1,6 +1,7 @@
-import { randomPhraseCreator } from "./scripts/randomPhraseCreator";
-import { contentGrabber } from "./scripts/contentGrabber";
-//be warned. The code is messier than usual :(
+import { randomPhraseCreator } from "./scripts/randomPhraseCreator"; import {
+contentGrabber } from "./scripts/contentGrabber"; import { moreAnimations }
+from "./scripts/moreAnimations"
+
 (function(){
 
 let intro = {
@@ -35,17 +36,17 @@ let intro = {
   },
 
   animateIntro: function(){
-      let str = "A volte";
 
+      let str = "A volte";
+      let amount = 3;
       let delay = 8;
       let count = randomPhraseCreator.getShortestPhraseLength()*2;
       let icon = '<i class="fa fa-envelope" aria-hidden="true"></i>';
       let iconIsSet = false;
-      this.btn.classList.remove('show');
 
       let gen = setInterval(function() {
-        intro.el.setAttribute('data-before', randomPhraseCreator.getRandomPhrase());
-        intro.el.setAttribute('data-after', randomPhraseCreator.getRandomPhrase());
+        intro.el.setAttribute('data-before', randomPhraseCreator.getRandomPhrase(amount));
+        intro.el.setAttribute('data-after', randomPhraseCreator.getRandomPhrase(amount));
         if(delay > 0) {
           delay--;
         }
@@ -67,15 +68,18 @@ let intro = {
           }
         }
       }, 180);
+
+    //to clear the setInterval function of button animation later 
+    this.buttonAnimation = moreAnimations.animateButton($(this.btn));
+      
   },
 
   emptyPage: function(){
     $('body').empty();
   },
 
-  setUpElements: function(){
-    this.setUpContainer();
-  },
+  /*I initially set up these setup functions thinking I wasn't going to use jQuery at all. 
+  I was wrong. The whole thing is a mess because of it.*/
 
   setUpContainer: function(){
     let containerDiv = document.createElement('div');
@@ -98,9 +102,10 @@ let intro = {
     return rowDiv;
   },
 
-  setUpCol: function(row){
+  setUpCol: function(row, id){
     let colDiv = document.createElement('div');
     colDiv.classList.add('col-xs-12');
+    colDiv.setAttribute('id', id);
 
     row.appendChild(colDiv);
 
@@ -116,22 +121,20 @@ let intro = {
     return $(h3);
   },
 
-  scrollTo: function(elementId){
-    $("#"+elementId).click(function() {
-    $('html, body').animate({
-        scrollTop: $("#"+elementId).offset().top
-    }, 2000);
-  });
-  },
+  /*The following two functions should be merged into on. They basically do
+    the same thing with slight variations. I'm ashamed of this code. */
 
   insertInitialSegment: function(){
+    
+    clearInterval(intro.buttonAnimation);
+
     intro.emptyPage();
-    intro.setUpElements();
+    intro.setUpContainer();
 
     let secondsBeforeNext = 8*1000;
 
     let rowDiv = intro.setUpRow(intro.container);
-    let colDiv = intro.setUpCol(rowDiv);
+    let colDiv = intro.setUpCol(rowDiv, 'main');
     let h3 = intro.setUpH3(colDiv, 1);
 
     let nextUp = contentGrabber.giveNext().text;
@@ -141,7 +144,7 @@ let intro = {
          .addClass('disable-select');
 
     intro.body.setAttribute('class', 'neutralBackground');
-    setTimeout(() => intro.bindEventToContent($('body')),1600);
+    setTimeout(() => intro.bindEventToContent($('body')),1000);
 
     intro.autoNext = setInterval(intro.insertNextSegment, secondsBeforeNext);
     
@@ -154,7 +157,7 @@ let intro = {
 
     //prevent user from accidentally clicking next more than once
     intro.unbindEventFrom($('body'));
-    setTimeout(()=>{intro.bindEventToContent($('body'))}, 1600);
+    setTimeout(()=>{intro.bindEventToContent($('body'))}, 1000);
 
     //if the event was fired by body, reset the timer
     if($(this).is('body')){
@@ -170,7 +173,7 @@ let intro = {
       
       $('#'+idOfPrevious).remove();
 
-      let $contentSelector = intro.setUpH3($('.col-xs-12'), idOfNext);
+      let $contentSelector = intro.setUpH3($('#main'), idOfNext);
 
       $contentSelector.html(nextUp)
                       .removeClass()
@@ -215,6 +218,12 @@ let intro = {
       break;
       case '5':
 
+       let row = intro.setUpRow(intro.container)
+       let col = intro.setUpCol(row, 'secondary');
+       let $h3 = intro.setUpH3(col, 'extra');
+
+
+       moreAnimations.animateWordsOnto($h3);
 
 
       break;

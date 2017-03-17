@@ -5,7 +5,7 @@ export var randomPhraseCreator = (function(){
          "risate, affetto, mano nella mano, abbraccio di cinque minuti, stima, speranza, "+
          "fiducia contagiosa, mistero, voglia di vivere, conoscere ancora, tutta da vivere....");
   
-  var amountOfPhrases = 3;
+  
   var dictionary = _createDictionary(words);
   var shortestLength = _findShortestPhraseLength(dictionary);  
 
@@ -17,11 +17,11 @@ export var randomPhraseCreator = (function(){
   };
 
   function _randomIndexOf(dictionArg){
-    return Math.floor(Math.random() * dictionArg.length)
+    return Math.floor((Math.random() * dictionArg.length));
   };
 
   function _randomPhraseCreator(dictionArg, amt){
-      var randomPhrase = '';
+      let randomPhrase = '';
       for(var i = 0; i < amt; i++) {
         randomPhrase += " " + dictionArg[_randomIndexOf(dictionArg)];
       }
@@ -39,9 +39,9 @@ export var randomPhraseCreator = (function(){
     return dictionary;
   }
 
-  function getRandomPhrase(){
+  function getRandomPhrase(amountOfPhrases){
     var randomPhrase = _randomPhraseCreator(dictionary, amountOfPhrases);
-    return randomPhrase.trim();
+    return randomPhrase;
   };
 
   function getShortestPhraseLength(){

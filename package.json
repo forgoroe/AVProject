@@ -5,8 +5,8 @@
   "main": "main.js",
  "scripts": {
     "start": "npm run build",
-    "build": "webpack -d && cp src/index.html dist/index.html && cp src/style.css dist/style.css && webpack-dev-server --content-base src/ --inline --hot",
-    "build:prod": "webpack -p && cp src/index.html dist/index.html && cp src/style.css dist/style.css"
+    "build": "webpack -d && cp src/index.html dist/index.html && cp src/style.css dist/style.css && cp src/animate.css dist/animate.css && webpack-dev-server --content-base src/ --inline --hot",
+    "build:prod": "webpack -p && cp src/index.html dist/index.html && cp src/style.css dist/style.css && cp src/animate.css dist/animate.css"
   },
   "dependencies": {
     "babel-core": "^6.23.1"

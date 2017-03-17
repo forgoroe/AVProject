@@ -1,5 +1,5 @@
 # AVProject
-modular javascript, css3 animations, reading
+Modular javascript (revealing module pattern), CSS3 animations, animate.css,
 
 finish this project
 in order to show it to others
