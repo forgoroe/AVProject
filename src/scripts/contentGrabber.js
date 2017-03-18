@@ -10,7 +10,6 @@ export var contentGrabber = (function(){
 			contentGrabbed++;
 			return content[contentGrabbed];
 			}
-			
 	};
 
 	function getContentLength(){
@@ -21,10 +20,15 @@ export var contentGrabber = (function(){
 		return contentGrabbed;
 	}
 
+	function contentIsAvailable(){
+		return getContentGrabbed() < getContentLength();
+	}
+
 	return {
 		giveNext: giveNext,
 		getContentLength: getContentLength,
-		getContentGrabbed: getContentGrabbed
+		getContentGrabbed: getContentGrabbed,
+		contentIsAvailable: contentIsAvailable
 
 	};
 })();
