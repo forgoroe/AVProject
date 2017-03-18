@@ -27,7 +27,7 @@ export var content = [
 
 {
 	id: 5, 
-	text: "fare un brain storming di parole senza necessariamente stabilire un nesso tra una parola e l'altra potrebbe aiutare? Forse."
+	text: "un brain storming di parole senza necessariamente stabilire un nesso tra una parola e l'altra potrebbe aiutare?"
 },
 
 {
@@ -92,46 +92,52 @@ export var content = [
 
 {
 	id: 18,
-	text:"Sento che 'amore' dovrebbe essere la parola che stavo cercando, ma continuo ad avere dubbi riguardo a quello che non provo nel leggerla. Dovrei sentire speranza, voglia di vivere, stima, affetto, curiosità... Eppure non sento un bel niente. "
+	text:"Sento che 'amore' dovrebbe essere la parola che stavo cercando, ma continuo ad avere dubbi riguardo a quello che non provo nel leggerla."
 },
 
 {
 	id: 19,
-	text: "Potrebbe essere che mi manca l'associazione tra 'lei' e la parola 'amore'?"
+	text: "Dovrei sentire speranza, voglia di vivere, stima, affetto, curiosità... Eppure non sento un bel niente. "
+
 },
 
 {
 	id: 20,
-	text: "Eppure mi sembra cosi riduttivo..."
+	text: "Potrebbe essere che mi manchi l'associazione tra 'lei' e la parola 'amore'?"
 },
 
 {
 	id: 21,
-	text: "Lei non può rappresentare l'amore, come l'amore non può rappresentare lei esclusivamente... Lei senza essere associata alla parola in alcun modo è ciò che riesce a farmi provare ciò che provo."
+	text: "Eppure mi sembra cosi riduttivo..."
 },
 
 {
 	id: 22,
-	text: "Associarla ad una definizione sembrerebbe un peggioramento."
+	text: "Lei non può rappresentare l'amore, come l'amore non può rappresentare lei esclusivamente... Lei senza essere associata alla parola in alcun modo è ciò che mi fa provare ciò che provo."
 },
 
 {
 	id: 23,
-	text: "Vivendo insieme estremamente piccoli momenti di vita insieme e condividendo ciò che sembrano attimi altrettanto insignificanti, vinciamo ricordi memorabili senza alcuna definizione di amore in mezzo ai piedi."
+	text: "Associarla ad una definizione sembrerebbe un peggioramento."
 },
 
 {
 	id: 24,
-	text: "Mettere una definizione o voler riassumere qualcosa che al solo pensiero mi inonda di creatività, voglia di fare, conoscere e speranza, potrebbe diventare ciò che mi impedirebbe di esprimere di più, fare di più, vivere di più"
+	text: "Vivendo insieme estremamente piccoli momenti di vita insieme e condividendo ciò che sembrano attimi altrettanto insignificanti, vinciamo ricordi memorabili senza alcuna definizione di amore in mezzo ai piedi."
 },
 
 {
 	id: 25,
-	text: "e cosa piú importante: vedere tutto come una possibilità in attesa di essere colta."
+	text: "Mettere una definizione o voler riassumere qualcosa che al solo pensiero mi inonda di creatività, voglia di fare, voglia di conoscere e speranza, potrebbe diventare ciò che mi impedirebbe di esprimere di più, fare di più, vivere di più"
 },
 
 {
 	id: 26,
+	text: "e cosa piú importante: vedere tutto come una possibilità in attesa di essere colta."
+},
+
+{
+	id: 27,
 	text: "Fin!"
 }
 

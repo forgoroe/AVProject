@@ -121,6 +121,11 @@ let intro = {
     return $(h3);
   },
 
+  resetAutoNext: function(secondsBeforeNext){
+    clearInterval(intro.autoNext);
+    intro.autoNext = setInterval(intro.insertNextSegment, secondsBeforeNext);
+  },
+
   /*The following two functions should be merged into on. They basically do
     the same thing with slight variations. I'm ashamed of this code. */
 
@@ -151,6 +156,10 @@ let intro = {
     },
 
   insertNextSegment: function(){
+    clearInterval(intro.timer);
+    let time = 0;
+    intro.timer = setInterval(() => console.log(++time + " seconds"), 1000);
+
     let idOfPrevious = contentGrabber.getContentGrabbed();
     let idOfNext = idOfPrevious+1;
     let secondsBeforeNext = 8*1000;
@@ -159,17 +168,14 @@ let intro = {
     intro.unbindEventFrom($('body'));
     setTimeout(()=>{intro.bindEventToContent($('body'))}, 1000);
 
-    //if the event was fired by body, reset the timer
-    if($(this).is('body')){
-      clearInterval(intro.autoNext);
-      intro.autoNext = setInterval(intro.insertNextSegment, secondsBeforeNext);
-    }
+    //normalise autoNext timer
+    intro.resetAutoNext(secondsBeforeNext);
 
     //removing and re-adding element to restart css animation
     if(idOfPrevious < contentGrabber.getContentLength()){
       let nextUp = contentGrabber.giveNext().text;
 
-      console.log(contentGrabber.getContentGrabbed());
+      console.log("Section number: "+contentGrabber.getContentGrabbed());
       
       $('#'+idOfPrevious).remove();
 
@@ -189,6 +195,8 @@ let intro = {
 
   //using setTimeOut to not overwrite the yourTurn animation or simply animate at a specific time
   doMoreBasedOn: function($selector){
+    let timeBeforeNext = 7*1000;
+
     switch($selector.attr('id')){
       
       case '2':
@@ -197,7 +205,7 @@ let intro = {
         $selector.addClass('animated')
                  .addClass('bounce')
                  .css('animation-duration', '3s')
-                }, 2500);
+                }, 2200);
       
       break;
 
@@ -206,16 +214,27 @@ let intro = {
       setTimeout(() => {
         $selector.addClass('animated')
                  .addClass('shake')
-                 .css('animation-duration', '2s')
+                 .css('animation-duration', '1.5s')
                 }, 2000);
 
+      
+      intro.resetAutoNext(timeBeforeNext);
+
       break;
+
       case '4':
 
+      setTimeout(() => {
+        $selector.addClass('animated')
+                 .addClass('fadeOutDown')
+                 .css('animation-duration', '4s')
+                }, 4000);
 
-
+      timeBeforeNext = 8*1000;
+      intro.resetAutoNext(timeBeforeNext);
 
       break;
+
       case '5':
 
        let row = intro.setUpRow(intro.container)
@@ -227,21 +246,28 @@ let intro = {
 
 
       break;
+
       case '6':
 
-
+      timeBeforeNext = 10*1000;
+      intro.resetAutoNext(timeBeforeNext);
 
       break;
+
       case '7':
 
 
 
       break;
+
       case '8':
 
+      timeBeforeNext = 4*1000;
+      intro.resetAutoNext(timeBeforeNext);
 
 
       break;
+
       case '9':
 
        setTimeout(() => {
@@ -250,53 +276,112 @@ let intro = {
                  .css('animation-duration', '2s')
                 }, 400);
 
+      timeBeforeNext = 6*1000;
+      intro.resetAutoNext(timeBeforeNext);
+
       break;
+
       case '10':
 
-
+      timeBeforeNext = 1*1000;
+      intro.resetAutoNext(timeBeforeNext);
 
       break;
+
       case '11':
 
+      timeBeforeNext = 0.5*1000;
+      intro.resetAutoNext(timeBeforeNext);
 
 
       break;
+
       case '12':
 
-
+      timeBeforeNext = 0.5*1000;
+      intro.resetAutoNext(timeBeforeNext);
 
 
       break;
+
       case '13':
 
-
+      timeBeforeNext = 1.5*1000;
+      intro.resetAutoNext(timeBeforeNext);
 
       break;
+
       case '14':
 
-
+      timeBeforeNext = 4*1000;
+      intro.resetAutoNext(timeBeforeNext);
 
       break;
+
       case '15':
 
-
+      timeBeforeNext = 5*1000;
+      intro.resetAutoNext(timeBeforeNext);
 
       break;
+
       case '16':
 
-
+      timeBeforeNext = 6*1000;
+      intro.resetAutoNext(timeBeforeNext);
 
       break;
+
       case '17':
 
-
+      timeBeforeNext = 6*1000;
+      intro.resetAutoNext(timeBeforeNext);
 
       break;
+
       case '18':
 
+      timeBeforeNext = 6*1000;
+      intro.resetAutoNext(timeBeforeNext);
+
+      break;
+
+      case '19':
+
+      timeBeforeNext = 5*1000;
+      intro.resetAutoNext(timeBeforeNext);
 
 
       break;
+
+      case '20':
+
+      timeBeforeNext = 5*1000;
+      intro.resetAutoNext(timeBeforeNext);
+
+      break;
+
+      case '21':
+
+      timeBeforeNext = 5*1000;
+      intro.resetAutoNext(timeBeforeNext);
+
+      break;
+
+      case '22':
+
+      timeBeforeNext = 5*1000;
+      intro.resetAutoNext(timeBeforeNext);
+
+      break;
+
+      case '23':
+
+      timeBeforeNext = 5*1000;
+      intro.resetAutoNext(timeBeforeNext);
+
+      break;
+
 
     }
   }
