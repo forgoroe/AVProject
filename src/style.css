@@ -7,13 +7,11 @@ body {
   justify-content: center;
   flex-flow: column;
   height: 100vh;
-  font-family: 'Anonymous Pro', monospace;
+  font-family: 'Lora', serif;
+
   text-align: center;
-  -webkit-animation: colorChange 4s;
+  animation: colorChange 4s;
   animation-fill-mode: forwards;
-
-
- 
 }
 
 
@@ -29,6 +27,10 @@ h1:after {
   content: attr(data-after);
   word-break: break-all;
   opacity: 0.4;
+}
+
+h3{
+  font-family: 'Crimson Text', serif;
 }
 
 #extra{
@@ -124,6 +126,24 @@ h1:after {
   cursor: pointer;
 }
 
+@-webkit-keyframes colorChange{
+  0%, 100% {
+    background-color: #00D2FF;
+  }
+  50% {
+    background-color:  #0569FF;
+  }
+}
+
+@-moz-keyframes colorChange{
+  0%, 100% {
+    background-color: #00D2FF;
+  }
+  50% {
+    background-color:  #0569FF;
+  }
+}
+
 @keyframes colorChange{
   0%, 100% {
     background-color: #00D2FF;
@@ -133,9 +153,28 @@ h1:after {
   }
 }
 
+
+@-webkit-keyframes fadeIn{
+  0% { opacity: 0;}
+  100% { opacity: 1;}
+}
+
+@-moz-keyframes fadeIn{
+  0% { opacity: 0;}
+  100% { opacity: 1;}
+}
+
 @keyframes fadeIn{
   0% { opacity: 0;}
   100% { opacity: 1;}
+}
+
+
+
+@-webkit-keyframes toNeutralBackground
+{
+0%   {background: #00D2FF}
+100%  {background: white;}
 }
 
 @-moz-keyframes toNeutralBackground
@@ -143,12 +182,9 @@ h1:after {
 0%   {background: #00D2FF;}
 100%  {background: white;}
 }
- 
-    @-webkit-keyframes toNeutralBackground
+
+@keyframes toNeutralBackground
 {
-0%   {background: #00D2FF}
+0%   {background: #00D2FF;}
 100%  {background: white;}
 }
-
-
-/*TEST MACCARONI*/
