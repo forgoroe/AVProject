@@ -7,7 +7,7 @@ export var content = [
 
 {
 	id: 1,
-	text: "Sono in momenti come questo che mi sento quasi in <i>dovere</i> di tentare di esprimere un'emozione inesprimibile."
+	text: "Sono in momenti come questo che mi sento in <i>dovere</i> di tentare di esprimere un'emozione inesprimibile."
 },
 
 {
@@ -27,12 +27,12 @@ export var content = [
 
 {
 	id: 5, 
-	text: "un brain storming di parole senza necessariamente stabilire un nesso tra una parola e l'altra potrebbe aiutare?"
+	text: "un brain storming di parole senza un nesso tra una parola e l'altra potrebbe aiutare?"
 },
 
 {
 	id: 6,
-	text: "Vorrei prendere tutte quelle idee, sostantivi, aggettivi, verbi e crearne una parola unica, nuova. Una singola parola... che risuoni e rieccheggi con la stessa intensità di tutte quelle altre idee positive e vivaci prese insieme, sommate..."
+	text: "Vorrei prendere tutte quelle idee, aggettivi, verbi e crearne una parola unica, nuova. Una singola parola... che risuoni e rieccheggi con la stessa intensità di tutte quelle altre idee vivaci e positive prese insieme, sommate..."
 },
 {
 	id: 7,
