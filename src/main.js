@@ -140,7 +140,7 @@ let intro = {
 
     let rowDiv = intro.setUpRow(intro.container);
     let colDiv = intro.setUpCol(rowDiv, 'main');
-    let h3 = intro.setUpH3(colDiv, 1);
+    let h3 = intro.setUpH3($(colDiv), 1);
 
     let nextUp = contentGrabber.giveNext().text;
 
@@ -239,7 +239,7 @@ let intro = {
 
        let row = intro.setUpRow(intro.container)
        let col = intro.setUpCol(row, 'secondary');
-       let $h3 = intro.setUpH3(col, 'extra');
+       let $h3 = intro.setUpH3($(col), 'extra');
 
 
        moreAnimations.animateWordsOnto($h3);

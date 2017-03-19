@@ -10,7 +10,7 @@ body {
   font-family: 'Lora', serif;
 
   text-align: center;
-  -webkit-animation: colorChange 4s;
+  animation: colorChange 4s;
   animation-fill-mode: forwards;
 }
 
@@ -126,6 +126,24 @@ h3{
   cursor: pointer;
 }
 
+@-webkit-keyframes colorChange{
+  0%, 100% {
+    background-color: #00D2FF;
+  }
+  50% {
+    background-color:  #0569FF;
+  }
+}
+
+@-moz-keyframes colorChange{
+  0%, 100% {
+    background-color: #00D2FF;
+  }
+  50% {
+    background-color:  #0569FF;
+  }
+}
+
 @keyframes colorChange{
   0%, 100% {
     background-color: #00D2FF;
@@ -135,9 +153,28 @@ h3{
   }
 }
 
+
+@-webkit-keyframes fadeIn{
+  0% { opacity: 0;}
+  100% { opacity: 1;}
+}
+
+@-moz-keyframes fadeIn{
+  0% { opacity: 0;}
+  100% { opacity: 1;}
+}
+
 @keyframes fadeIn{
   0% { opacity: 0;}
   100% { opacity: 1;}
+}
+
+
+
+@-webkit-keyframes toNeutralBackground
+{
+0%   {background: #00D2FF}
+100%  {background: white;}
 }
 
 @-moz-keyframes toNeutralBackground
@@ -145,12 +182,15 @@ h3{
 0%   {background: #00D2FF;}
 100%  {background: white;}
 }
- 
-    @-webkit-keyframes toNeutralBackground
+
+@keyframes toNeutralBackground
 {
-0%   {background: #00D2FF}
+0%   {background: #00D2FF;}
 100%  {background: white;}
 }
+
+ 
+
 
 
 /*TEST MACCARONI*/
