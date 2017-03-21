@@ -1,12 +1,22 @@
 import { phraseCreator } from "./scripts/phraseCreator"; 
 import { contentGrabber } from "./scripts/contentGrabber"; 
-import { moreAnimations } from "./scripts/moreAnimations"
+import { moreAnimations } from "./scripts/moreAnimations";
+import NoSleep from "nosleep";
 
 (function(){
+
+  var noSleep = new NoSleep();
+  
+  function enableNoSleep() {
+  noSleep.enable(9999999999);
+  intro.btn.removeEventListener('touchstart', enableNoSleep, false);
+  
+  };
 
 let intro = {
 
   init: function(){
+    
     this.cacheIntroDom();
     this.bindEvents();
     this.animateIntro();
@@ -24,6 +34,7 @@ let intro = {
 
   bindEvents: function(){
    this.btn.addEventListener('click', this.insertInitialSegment);
+   this.btn.addEventListener('click', enableNoSleep, false);
   },
 
   bindEventToContent: function($nodeToBind){
