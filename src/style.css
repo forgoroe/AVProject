@@ -33,6 +33,10 @@ h3{
   font-family: 'Crimson Text', serif;
 }
 
+.paddingSpace{
+  padding-bottom: 400px;
+}
+
 #extra{
   position: absolute;
     left: 20px;

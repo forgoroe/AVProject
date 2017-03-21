@@ -1,6 +1,6 @@
-import { randomPhraseCreator } from "./scripts/randomPhraseCreator"; import {
-contentGrabber } from "./scripts/contentGrabber"; import { moreAnimations }
-from "./scripts/moreAnimations"
+import { phraseCreator } from "./scripts/phraseCreator"; 
+import { contentGrabber } from "./scripts/contentGrabber"; 
+import { moreAnimations } from "./scripts/moreAnimations"
 
 (function(){
 
@@ -33,6 +33,9 @@ let intro = {
 
   unbindEventFrom: function($nodeToUnbind){
     $nodeToUnbind.unbind().click(function(){});
+    $nodeToUnbind.removeClass('pointerCursor');
+    $nodeToUnbind.addClass('defaultCursor');
+
   },
 
   animateIntro: function(){
@@ -40,13 +43,13 @@ let intro = {
       let str = "A volte";
       let amount = 3;
       let delay = 8;
-      let count = randomPhraseCreator.getShortestPhraseLength()*2;
+      let count = phraseCreator.getShortestPhraseLength()*2;
       let icon = '<i class="fa fa-envelope" aria-hidden="true"></i>';
       let iconIsSet = false;
 
       let gen = setInterval(function() {
-        intro.el.setAttribute('data-before', randomPhraseCreator.getRandomPhrase(amount));
-        intro.el.setAttribute('data-after', randomPhraseCreator.getRandomPhrase(amount));
+        intro.el.setAttribute('data-before', phraseCreator.getRandomPhrase(amount));
+        intro.el.setAttribute('data-after', phraseCreator.getRandomPhrase(amount));
         if(delay > 0) {
           delay--;
         }
@@ -149,7 +152,7 @@ let intro = {
          .addClass('disable-select');
 
     intro.body.setAttribute('class', 'neutralBackground');
-    setTimeout(() => intro.bindEventToContent($('body')),1000);
+    setTimeout(() => intro.bindEventToContent($('body')),1600);
 
     intro.autoNext = setInterval(intro.insertNextSegment, secondsBeforeNext);
     
@@ -298,7 +301,7 @@ let intro = {
 
       case '12':
 
-      timeBeforeNext = 0.5*1000;
+      timeBeforeNext = 0.5*1000;	
       intro.resetAutoNext(timeBeforeNext);
 
 
