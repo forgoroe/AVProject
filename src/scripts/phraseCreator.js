@@ -1,9 +1,9 @@
 export var phraseCreator = (function(){
   
-  var words = ("Dolce volto, occhi, sorriso, capelli soffici, adorabile, "+
-         "bella, attraente, piccola, sicurezza, una vita condivisa, parlare, "+
-         "risate, affetto, mano nella mano, abbraccio di cinque minuti, stima, speranza, "+
-         "fiducia contagiosa, mistero, voglia di vivere, conoscere ancora, tutta da vivere....");
+  var words = (" Dolce volto, Occhi, Sorriso, Capelli soffici, Adorabile, "+
+         "Bella, Attraente, Piccola, Sicurezza, Una vita condivisa, Parlare, "+
+         "Risate, Affetto, Mano nella mano, Abbraccio di cinque minuti, Stima, Speranza, "+
+         "Fiducia contagiosa, Mistero, Voglia di vivere, Conoscere ancora, Tutta da vivere....");
   
   
   var dictionary = _createDictionary(words);
