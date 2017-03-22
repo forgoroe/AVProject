@@ -1,9 +1,17 @@
 import { phraseCreator } from "./scripts/phraseCreator"; 
 import { moreAnimations } from "./scripts/moreAnimations";
 import { presentation } from "./scripts/presentation";
+import NoSleep from "nosleep";
 
 (function(){
 
+  var noSleep = new NoSleep();
+
+  function enableNoSleep() {
+    noSleep.enable(9999999999);
+    intro.$btn.off('click', enableNoSleep, false);
+  };
+  
 let intro = {
 
   init: function(){
@@ -20,6 +28,7 @@ let intro = {
 
   bindEvents: function() {
       this.$btn.on('click', () => {
+        enableNoSleep();
         clearInterval(intro.buttonAnimation);
         presentation.rollPresentation()
       });

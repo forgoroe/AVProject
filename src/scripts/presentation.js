@@ -6,7 +6,7 @@ export var presentation = (function(){
 
 	const defaultSecondsBeforeNext = 8 * 1000;
 	var autoNext;
-	var timer;
+	
 
 	function rollPresentation() {
 		$('body').empty();
