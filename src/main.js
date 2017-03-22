@@ -1,4 +1,4 @@
-import { randomPhraseCreator } from "./scripts/randomPhraseCreator"; 
+import { phraseCreator } from "./scripts/phraseCreator"; 
 import { moreAnimations } from "./scripts/moreAnimations";
 import { presentation } from "./scripts/presentation";
 
@@ -31,14 +31,14 @@ let intro = {
       let str = "A volte";
       let amount = 3;
       let delay = 8;
-      let count = randomPhraseCreator.getShortestPhraseLength()*2;
+      let count = phraseCreator.getShortestPhraseLength()*2;
       let icon = '<i class="fa fa-envelope" aria-hidden="true"></i>';
       let iconIsSet = false;
       let html = ''
 
       let gen = setInterval(function() {
-        intro.$el.attr('data-before', randomPhraseCreator.getRandomPhrase(amount));
-        intro.$el.attr('data-after', randomPhraseCreator.getRandomPhrase(amount));
+        intro.$el.attr('data-before', phraseCreator.getRandomPhrase(amount));
+        intro.$el.attr('data-after', phraseCreator.getRandomPhrase(amount));
         if(delay > 0) {
           delay--;
         }

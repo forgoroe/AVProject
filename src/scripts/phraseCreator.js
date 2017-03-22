@@ -1,4 +1,4 @@
-export var randomPhraseCreator = (function(){
+export var phraseCreator = (function(){
   
   var words = ("Dolce volto, occhi, sorriso, capelli soffici, adorabile, "+
          "bella, attraente, piccola, sicurezza, una vita condivisa, parlare, "+
@@ -8,6 +8,9 @@ export var randomPhraseCreator = (function(){
   
   var dictionary = _createDictionary(words);
   var shortestLength = _findShortestPhraseLength(dictionary);  
+
+  var counter = 0;
+  var shuffledDictionary = _shuffleDictionary(dictionary);
 
   function _createDictionary(text){
     dictionary = [];
@@ -28,6 +31,18 @@ export var randomPhraseCreator = (function(){
       return randomPhrase;
   };
 
+  function _shuffleDictionary(dictionArg){
+    let tempDictionary = dictionArg.slice(0);
+    var i = tempDictionary.length, j, temp;
+    while(--i > 0){
+      j = Math.floor(Math.random() * (i+1));
+      temp = tempDictionary[j];
+      tempDictionary[j] = tempDictionary[i];
+      tempDictionary[i] = temp;
+    }
+    return tempDictionary;
+  }
+
   function _findShortestPhraseLength(dictionaryArg){
     var shortest = dictionaryArg.reduce(function(a, b) {
     return a.length <= b.length ? a : b;
@@ -44,6 +59,11 @@ export var randomPhraseCreator = (function(){
     return randomPhrase;
   };
 
+
+  function getNextInDictionary(){
+    return shuffledDictionary[counter++];
+  };
+
   function getShortestPhraseLength(){
     return shortestLength;  
   };
@@ -51,7 +71,8 @@ export var randomPhraseCreator = (function(){
   return {
     getRandomPhrase: getRandomPhrase,
     getShortestPhraseLength: getShortestPhraseLength,
-    getDictionary: getDictionary
+    getDictionary: getDictionary,
+    getNextInDictionary: getNextInDictionary
   }
 
 })();

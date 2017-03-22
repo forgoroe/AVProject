@@ -1,4 +1,4 @@
-import { randomPhraseCreator } from './randomPhraseCreator';
+import { phraseCreator } from './phraseCreator';
 
 export var moreAnimations = (function() {
 
@@ -10,8 +10,8 @@ export var moreAnimations = (function() {
 		let amount = 2;
 
 		let gen = setInterval(function() {
-				$placement.attr('data-before', randomPhraseCreator.getRandomPhrase(amount));
-				$placement.attr('data-after', randomPhraseCreator.getRandomPhrase(amount));
+				$placement.attr('data-before', phraseCreator.getNextInDictionary());
+				$placement.attr('data-after', phraseCreator.getNextInDictionary());
 				if (delay > 0) {
 					delay--;
 				} else {
