@@ -3,14 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
-  "scripts": {
+ "scripts": {
     "start": "npm run build",
     "build": "webpack -d && cp src/index.html dist/index.html && cp src/style.css dist/style.css && cp src/animate.css dist/animate.css && webpack-dev-server --content-base src/ --inline --hot",
     "build:prod": "webpack -p && cp src/index.html dist/index.html && cp src/style.css dist/style.css && cp src/animate.css dist/animate.css"
   },
   "dependencies": {
-    "babel-core": "^6.23.1",
-    "nosleep": "github:bhspitmonkey/NoSleep.js"
+    "babel-core": "^6.23.1"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
