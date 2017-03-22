@@ -48,11 +48,17 @@ export var presentation = (function(){
 
 		console.log("Section number: " + contentGrabber.getContentGrabbed());
 
-		$contentSelector.html(nextUp)
-			.removeClass()
-			.addClass('disable-select')
-			.addClass('yourTurn');
-
+		if ($contentSelector.attr('id') == 0) {
+			$contentSelector.html(nextUp)
+				.removeClass()
+				.addClass('disable-select')
+				.addClass('firstTurn');
+		} else {
+			$contentSelector.html(nextUp)
+				.removeClass()
+				.addClass('disable-select')
+				.addClass('yourTurn');
+		}
 		doMoreBasedOn($contentSelector);
 
 	};
