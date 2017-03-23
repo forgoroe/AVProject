@@ -6,7 +6,7 @@ export var presentation = (function(){
 
 	const defaultSecondsBeforeNext = 8 * 1000;
 	var autoNext;
-	
+	var timer;
 
 	function rollPresentation() {
 		$('body').empty();
@@ -18,8 +18,16 @@ export var presentation = (function(){
 
 	};
 
+	function startTimer(){
+		clearInterval(timer);
+		let secondsPassed = 1;
+		timer = setInterval(()=> console.log(secondsPassed++ + " seconds"), 1000);
+	};
+
 	function insertNextSegment() {
-		//id assignment
+		
+		startTimer();
+
 		let idOfNext = contentGrabber.getContentGrabbed();
 
 		let nextUp = contentGrabber.giveNext().text;
@@ -188,7 +196,7 @@ export var presentation = (function(){
 
 			case '10':
 
-				timeBeforeNext = 0.5 * 1000;
+				timeBeforeNext = 1 * 1000;
 				resetAutoNext(timeBeforeNext);
 
 
@@ -196,7 +204,7 @@ export var presentation = (function(){
 
 			case '11':
 
-				timeBeforeNext = 0.5 * 1000;
+				timeBeforeNext = 1 * 1000;
 				resetAutoNext(timeBeforeNext);
 
 
