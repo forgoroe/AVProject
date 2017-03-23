@@ -20,28 +20,19 @@ export var presentation = (function(){
 
 	function insertNextSegment() {
 		//id assignment
-
-
 		let idOfNext = contentGrabber.getContentGrabbed();
 
 		let nextUp = contentGrabber.giveNext().text;
 
 		let idOfPrevious = idOfNext - 1;
 
+		//normalise autoNext timer
+		resetAutoNext(defaultSecondsBeforeNext);
 		
 		unbindEventFrom($('body'));
 
-		if(contentGrabber.contentIsAvailable()){
-			//prevent user from accidentally clicking next more than once
-			setTimeout(() => {
-				bindEventToContent($('body'))
-			}, 1000);
-
-			//normalise autoNext timer
-			resetAutoNext(defaultSecondsBeforeNext);
-		}
+		
 		//removing and re-adding element to restart css animation
-
 		$('#' + idOfPrevious).remove();
 
 		let $contentSelector = setupper.setUpH3($('#main'), idOfNext);
@@ -61,13 +52,23 @@ export var presentation = (function(){
 		}
 		doMoreBasedOn($contentSelector);
 
+		if(contentGrabber.contentIsAvailable()){
+			//prevent user from accidentally clicking next more than once
+			setTimeout(() => {
+				bindEventToContent($('body'))
+			}, 1000);
+		} else {
+			setTimeout(()=>{
+				location.reload(false);
+			}, defaultSecondsBeforeNext);
+			
+		}
+
 	};
 
 	function resetAutoNext(secondsBeforeNext) {
 		clearInterval(autoNext);
-		if(contentGrabber.contentIsAvailable()){
-			autoNext = setInterval(insertNextSegment, secondsBeforeNext);
-		}
+		autoNext = setInterval(insertNextSegment, secondsBeforeNext);
 	};
 
 	function bindEventToContent($nodeToBind) {
@@ -181,6 +182,7 @@ export var presentation = (function(){
 
 				timeBeforeNext = 1 * 1000;
 				resetAutoNext(timeBeforeNext);
+
 
 				break;
 

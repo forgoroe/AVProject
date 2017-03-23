@@ -8,7 +8,7 @@ import NoSleep from "nosleep";
   var noSleep = new NoSleep();
 
   function enableNoSleep() {
-    noSleep.enable(9999999999);
+    noSleep.enable(9999999);
     intro.$btn.off('click', enableNoSleep, false);
   };
   

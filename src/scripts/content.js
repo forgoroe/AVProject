@@ -128,12 +128,12 @@ export var content = [
 
 {
 	id: 24,
-	text: "Mettere una definizione o voler riassumere qualcosa che al solo pensiero mi inonda di creatività, voglia di fare, voglia di conoscere e speranza, potrebbe diventare ciò che mi impedirebbe di esprimere di più, fare di più, vivere di più"
+	text: "Mettere una definizione o voler riassumere qualcosa che al solo pensiero mi inonda di creatività, voglia di fare, voglia di conoscere e speranza, potrebbe diventare ciò che mi impedirebbe di esprimere di più, fare di più, vivere di più..."
 },
 
 {
 	id: 25,
-	text: "e cosa piú importante: vedere tutto come una possibilità in attesa di essere colta."
+	text: "...e cosa piú importante: vedere tutto come una possibilità in attesa di essere colta."
 },
 
 {
