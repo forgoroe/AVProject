@@ -54,11 +54,13 @@ let intro = {
         else {
           if(count < str.length) {
            if(!iconIsSet){
-             html = '<i class="fa fa-envelope" aria-hidden="true"></i> ';
+             html = '<i class="fa fa-envelope yourTurn" aria-hidden="true"></i> ';
+             intro.$el.html(html);
              iconIsSet = true;
            }
-            html += str[str.length - count-1];
-            intro.$el.html(html);
+            html = '<span class="yourTurn">' + str[str.length - count-1] + '</span>';
+            intro.$el.append(html);
+           
           }
           count--;
           if(count === -1) {
