@@ -11,6 +11,22 @@ import NoSleep from "nosleep";
     noSleep.enable(9999999);
     intro.$btn.off('click', enableNoSleep, false);
   };
+
+  function fullScreen(){
+    var docElm = document.getElementsByTagName('html')[0];
+    if (docElm.requestFullscreen) {
+        docElm.requestFullscreen();
+    }
+    else if (docElm.mozRequestFullScreen) {
+        docElm.mozRequestFullScreen();
+    }
+    else if (docElm.webkitRequestFullScreen) {
+        docElm.webkitRequestFullScreen();
+    }
+    else if (docElm.msRequestFullscreen) {
+        docElm.msRequestFullscreen();
+    }
+ };
   
 let intro = {
 
@@ -30,14 +46,14 @@ let intro = {
       this.$btn.on('click', () => {
         enableNoSleep();
         clearInterval(intro.buttonAnimation);
-        presentation.rollPresentation()
+        fullScreen();
+        presentation.rollPresentation();
       });
-
   },
 
   animateIntro: function(){
 
-      let str = "A volte";
+      let str = "A volte...";
       let amount = 3;
       let delay = 8;
       let count = phraseCreator.getShortestPhraseLength()*2;
@@ -54,7 +70,7 @@ let intro = {
         else {
           if(count < str.length) {
            if(!iconIsSet){
-             html = '<i class="fa fa-envelope yourTurn" aria-hidden="true"></i> ';
+             html = '<i class="fa fa-envelope animated fadeIn" aria-hidden="true"></i> ';
              intro.$el.html(html);
              iconIsSet = true;
            }

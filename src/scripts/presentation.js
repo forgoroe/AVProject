@@ -15,13 +15,12 @@ export var presentation = (function(){
 		setupper.setUpElements(initialColumnId);
 
 		insertNextSegment();
-
 	};
 
 	function startTimer(){
 		clearInterval(timer);
-		let secondsPassed = 1;
-		timer = setInterval(()=> console.log(secondsPassed++ + " seconds"), 1000);
+		let secondsPassed = 0;
+		timer = setInterval(()=> console.log(++secondsPassed + " seconds"), 1000);
 	};
 
 	function insertNextSegment() {
@@ -58,6 +57,7 @@ export var presentation = (function(){
 				.addClass('disable-select')
 				.addClass('yourTurn');
 		}
+		window.scrollTo(0,document.body.scrollHeight);
 		doMoreBasedOn($contentSelector);
 
 		if(contentGrabber.contentIsAvailable()){
@@ -99,8 +99,8 @@ export var presentation = (function(){
 
 			case '0':
 
+				$('html').addClass('neutralBackground');
 				$('body').addClass('neutralBackground');
-
 
 				break;
 
