@@ -1,3 +1,8 @@
+html{
+  overflow: hidden;
+  height: 100%;
+}
+
 body{
 
   margin-left: 20px;
@@ -78,6 +83,10 @@ h3:fullscreen{
 }
 
 #subtitle{
+  opacity: 0;
+}
+
+.subtitleAnimation{
   margin-left: 25px;
   color: #361E1E;
   opacity: 0;
@@ -85,8 +94,6 @@ h3:fullscreen{
           animation:fadeIn;
   -webkit-animation-duration: 2s;
           animation-duration: 2s;
-  -webkit-animation-delay: 4.2s;
-          animation-delay: 4.2s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
@@ -101,6 +108,7 @@ h3:fullscreen{
   padding: 15px 30px;
   cursor: pointer;
   text-align: center;
+  visibility: hidden;
 }
 
 .button:hover{
@@ -109,6 +117,8 @@ h3:fullscreen{
 
 .button.show {
   opacity: 0;
+  visibility: visible;
+
    -webkit-animation: fadeIn 1s linear;
            animation: fadeIn 1s linear;
    -webkit-animation-delay: 1.5s;

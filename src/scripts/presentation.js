@@ -7,6 +7,7 @@ export var presentation = (function(){
 	const defaultSecondsBeforeNext = 8 * 1000;
 	var autoNext;
 	var timer;
+	var nineThroughTwelve = '';
 
 	function rollPresentation() {
 		$('body').empty();
@@ -14,7 +15,7 @@ export var presentation = (function(){
 
 		setupper.setUpElements(initialColumnId);
 
-		insertNextSegment();
+		insertSegment();
 	};
 
 	function startTimer(){
@@ -23,16 +24,23 @@ export var presentation = (function(){
 		timer = setInterval(()=> console.log(++secondsPassed + " seconds"), 1000);
 	};
 
-	function insertNextSegment() {
+	/**
+	 * Inserts next segment.
+	 * @param {Number} nextOrPrevious
+	 * @return {undefined}
+	 */
+	function insertSegment() {
 		
 		startTimer();
-
-		let idOfNext = contentGrabber.getContentGrabbed();
-
-		let nextUp = contentGrabber.giveNext().text;
-
-		let idOfPrevious = idOfNext - 1;
-
+		
+		let idOfNext;
+		let idOfPreviousToRemove; 
+		let nextUp;
+		
+		idOfNext = contentGrabber.getContentGrabbed();
+		idOfPreviousToRemove = idOfNext - 1;
+		nextUp = contentGrabber.giveNext().text;
+	
 		//normalise autoNext timer
 		resetAutoNext(defaultSecondsBeforeNext);
 		
@@ -40,11 +48,11 @@ export var presentation = (function(){
 
 		
 		//removing and re-adding element to restart css animation
-		$('#' + idOfPrevious).remove();
+		$('#' + idOfPreviousToRemove).remove();
 
 		let $contentSelector = setupper.setUpH3($('#main'), idOfNext);
 
-		console.log("Section number: " + contentGrabber.getContentGrabbed());
+		console.log("Section number: " + idOfNext);
 
 		if ($contentSelector.attr('id') == 0) {
 			$contentSelector.html(nextUp)
@@ -57,11 +65,24 @@ export var presentation = (function(){
 				.addClass('disable-select')
 				.addClass('yourTurn');
 		}
-		window.scrollTo(0,document.body.scrollHeight);
+        window.scrollTo(0,(document.body.scrollHeight)*0.5);
+
+		
 		doMoreBasedOn($contentSelector);
 
+		accidentPreventer();
+
+	};
+
+	function insertPrevious(){
+		
+	
+
+	};
+
+	function accidentPreventer(){
+		//prevent user from accidentally clicking next more than once; reload page if no more content available.
 		if(contentGrabber.contentIsAvailable()){
-			//prevent user from accidentally clicking next more than once
 			setTimeout(() => {
 				bindEventToContent($('body'))
 			}, 1000);
@@ -71,29 +92,33 @@ export var presentation = (function(){
 			}, defaultSecondsBeforeNext);
 			
 		}
-
 	};
+
 
 	function resetAutoNext(secondsBeforeNext) {
 		clearInterval(autoNext);
-		autoNext = setInterval(insertNextSegment, secondsBeforeNext);
+		autoNext = setInterval(insertSegment, secondsBeforeNext);
 	};
 
 	function bindEventToContent($nodeToBind) {
 		$nodeToBind.addClass('pointerCursor');
-		$nodeToBind.on('click', insertNextSegment);
+		$nodeToBind.on('click', insertSegment);
+		$nodeToBind.on('keyup', insertSegment);
 	};
 
 	function unbindEventFrom($nodeToUnbind) {
 		$nodeToUnbind.removeClass('pointerCursor');
 		$nodeToUnbind.addClass('defaultCursor');
 		$nodeToUnbind.unbind('click');
+		$nodeToUnbind.unbind('keyup');
+		
 	};
 
 
 	//using setTimeOut to not overwrite the yourTurn animation or simply animate at a specific time
 	function doMoreBasedOn($selector) {
 		let timeBeforeNext = defaultSecondsBeforeNext;
+		
 
 		switch ($selector.attr('id')) {
 
@@ -188,7 +213,13 @@ export var presentation = (function(){
 
 			case '9':
 
-				timeBeforeNext = 1 * 1000;
+				nineThroughTwelve += $selector.html() + ' ';
+				$selector.html(nineThroughTwelve)
+						 .removeClass()
+						 .addClass('disable-select')
+						 .addClass('yourTurn');
+
+				timeBeforeNext = 0.6 * 1000;
 				resetAutoNext(timeBeforeNext);
 
 
@@ -196,7 +227,12 @@ export var presentation = (function(){
 
 			case '10':
 
-				timeBeforeNext = 1 * 1000;
+				nineThroughTwelve += $selector.html() + ' ';
+				$selector.html(nineThroughTwelve)
+						 .removeClass()
+						 .addClass('disable-select')
+
+				timeBeforeNext = 0.6 * 1000;
 				resetAutoNext(timeBeforeNext);
 
 
@@ -204,13 +240,23 @@ export var presentation = (function(){
 
 			case '11':
 
-				timeBeforeNext = 1 * 1000;
+				nineThroughTwelve += $selector.html() + ' ';
+				$selector.html(nineThroughTwelve)
+						 .removeClass()
+						 .addClass('disable-select')
+
+				timeBeforeNext = 0.6 * 1000;
 				resetAutoNext(timeBeforeNext);
 
 
 				break;
 
 			case '12':
+
+				nineThroughTwelve += $selector.html() + ' ';
+					$selector.html(nineThroughTwelve)
+							 .removeClass()
+							 .addClass('disable-select')
 
 				timeBeforeNext = 1.5 * 1000;
 				resetAutoNext(timeBeforeNext);

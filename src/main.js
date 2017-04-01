@@ -12,21 +12,21 @@ import NoSleep from "nosleep";
     intro.$btn.off('click', enableNoSleep, false);
   };
 
-  function fullScreen(){
-    var docElm = document.getElementsByTagName('html')[0];
-    if (docElm.requestFullscreen) {
+  function fullScreen() {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      var docElm = document.getElementsByTagName('html')[0];
+      if (docElm.requestFullscreen) {
         docElm.requestFullscreen();
-    }
-    else if (docElm.mozRequestFullScreen) {
+      } else if (docElm.mozRequestFullScreen) {
         docElm.mozRequestFullScreen();
-    }
-    else if (docElm.webkitRequestFullScreen) {
+      } else if (docElm.webkitRequestFullScreen) {
         docElm.webkitRequestFullScreen();
-    }
-    else if (docElm.msRequestFullscreen) {
+      } else if (docElm.msRequestFullscreen) {
         docElm.msRequestFullscreen();
+      }
     }
- };
+    
+  };
   
 let intro = {
 
@@ -40,6 +40,7 @@ let intro = {
     this.$el = $('#aVolte');
     this.$btn = $('.button');
     this.$body = $('body');
+    this.$subtitle = $('#subtitle');
   },
 
   bindEvents: function() {
@@ -76,7 +77,6 @@ let intro = {
            }
             html = '<span class="yourTurn">' + str[str.length - count-1] + '</span>';
             intro.$el.append(html);
-           
           }
           count--;
           if(count === -1) {
@@ -85,11 +85,13 @@ let intro = {
             intro.$el.removeAttr('data-after');
             intro.$el.css('margin-right', '25px');
             intro.$btn.addClass('show');
+            window.scrollTo(0,document.body.scrollHeight);
           }
         }
       }, 180);
 
-    this.buttonAnimation = moreAnimations.animateButton($(this.$btn));   
+    moreAnimations.animateSubtitle(this.$subtitle);
+    this.buttonAnimation = moreAnimations.animateButton($(this.$btn));
   }
 
   }

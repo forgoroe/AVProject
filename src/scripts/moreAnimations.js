@@ -26,6 +26,13 @@ export var moreAnimations = (function() {
 			1000);
 	};
 
+	function animateSubtitle($subtitle){
+		let animationDelay = 4200;
+		setTimeout(()=>{
+			$subtitle.addClass('subtitleAnimation');
+		},animationDelay);
+	};
+
 	function animateButton($button) {
 		var text = '';
 		var buttonAnimation = setInterval(function() {
@@ -45,6 +52,7 @@ export var moreAnimations = (function() {
 
 	return {
 		animateWordsOnto: animateWordsOnto,
-		animateButton: animateButton
+		animateButton: animateButton,
+		animateSubtitle: animateSubtitle
 	}
 })();
