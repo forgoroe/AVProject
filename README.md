@@ -1,6 +1,6 @@
 # AVProject
 
-![Preview](https://res.cloudinary.com/forgoroe/image/upload/v1490267536/previews/avproject_preview.png)
+![Preview](https://res.cloudinary.com/forgoroe/image/upload/c_scale,w_981/v1491061725/previews/avprojectpreview_2.png)
 
 ## About the project
 
