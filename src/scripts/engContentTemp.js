@@ -1,28 +1,28 @@
 export var content = [
 {
 	id: "brainStorming",
-	text: "Volto dolce, occhi, sorriso, capelli soffici, adorabile, bella, attraente, piccola, sicurezza, friend, una vita condivisa, parlare, risate, affetto, mano nella mano, abbraccio di 5 minuti, stima, speranza, fiducia contagiosa, mistero, voglia di vivere, conoscere ancora, tutta da vivere....",
+	text: "sweet face, eyes, smile, soft hair, adorable, beautiful, attractive, little, assurance, friend, a shared life, talking, laughing, affection, hand in hand, five-minute hug, esteem, hope, infectious trust, mystery, will to live, know more, live her fully...",
 
 },
 
 {
 	id: 0,
-	text: "Sono in momenti come questo che mi sento quasi in <i>dovere</i> di tentare di esprimere un'emozione inesprimibile."
+	text: "It's in moments like these that I feel like I desperately <i>need</i> to try and convey an inexpressible excitement."
 },
 
 {
 	id: 1,
-	text: "È come se tutte le parole necessarie a descrivere lo tsunami di sensazioni che provo si presentassero tutte in un colpo solo, senza darmi tempo di comprendere cosa sto esattamente provando."
+	text: "It's as if all the words needed to describe the tsunami of emotions I'm sensing showed up all at the same time, without giving me any time to understand what I'm feeling."
 },
 
 {
 	id: 2,
-	text: "Mi ritrovo in mezzo ad uno sfogo improvviso di emozioni in cui percepisco un'infinità di parole potenzialmente adatte ad esprimere quello che sento,"
+	text: "I'm in the middle of a sudden release of emotions where I sense an infinite amount of words potentially apt to describe what I'm experiencing,"
 },
 
 {
 	id: 3,
-	text: "ma che appena considerate una ad una mi rendo conto siano terribilmente mediocri o insufficienti."
+	text: "but which if considered one by one, I realise being terribly mediocre or insufficient."
 },
 
 {
@@ -123,12 +123,12 @@ export var content = [
 
 {
 	id: 23,
-	text: "Vivendo insieme piccoli momenti e condividendo ciò che sembrano attimi altrettanto insignificanti, vinciamo ricordi memorabili senza bisogno di collegare alcuna definizione."
+	text: "Vivendo insieme piccoli momenti e condividendo ciò che sembrano attimi altrettanto insignificanti, vinciamo ricordi memorabili senza bisogno di alcuna definizione associata."
 },
 
 {
 	id: 24,
-	text: "Delimitare o voler riassumere qualcosa che al solo pensiero mi inonda di creatività, voglia di fare, voglia di conoscere e speranza, potrebbe diventare ciò che mi impedirebbe di esprimere di più, fare di più, vivere di più..."
+	text: "Mettere una definizione o voler riassumere qualcosa che al solo pensiero mi inonda di creatività, voglia di fare, voglia di conoscere e speranza, potrebbe diventare ciò che mi impedirebbe di esprimere di più, fare di più, vivere di più..."
 },
 
 {
@@ -138,27 +138,27 @@ export var content = [
 
 {
 	id: 26,
-	text: "E qui finiva la mia riflessione notturna del 3 marzo 2017"
+	text: "Qui termina il monologo notturno del 3 marzo 2017"
 },
 
 {
 	id: 27,
-	text: "... A volte alcune persone sono capaci di riempirti di vita senza nemmeno rendersene conto. Una di queste mi ha regalato un'energia davvero enorme recentemente."
+	text: "... A volte alcune persone ti riempiono di vita senza nemmeno rendersene conto. Una di queste recentemente mi ha regalato un'energia davvero enorme."
 },
 
 {
 	id: 28,
-	text: "A partire da quella riflessione ho cominciato ad abbandonare diversi timori che mi trattenevano anche solo <i>dall'aspirare</i> alla realizzazione di certi obiettivi."
+	text: "A partire da quella riflessione ho cominciato ad abbandonare i diversi timori che mi trattenevano anche solo <i>dall'aspirare</i> alla realizzazione di certi obiettivi."
 },
 
 {
 	id: 29,
-	text: "Ho cominciato a liberarmi di alcune paure che credevo di aver già eliminato da tempo... Come la paura di fallire o di non essere all'altezza."
+	text: "Ho cominciato a scrollarmi di dosso timori che credevo di aver già eliminato da tempo... Timori come la paura di fallire o di non essere all'altezza."
 },
 
 {
 	id: 30,
-	text: "Ho introdotto delle novità nella mia vita che fino a quel momento ignoravo o che inconsciamente evitavo per sentirmi più 'al sicuro'."
+	text: "Ho introdotto delle novità nella mia vita che fino ad allora ignoravo o che inconsciamente evitavo per sentirmi più 'al sicuro'."
 },
 
 {
@@ -169,12 +169,12 @@ export var content = [
 
 {
 	id: 32,
-	text: "Questo è solo un piccolissimo ringraziamento alla persona che con il suo carattere creativo, solare, tranquillo, umile ma determinato, mi ha ispirato a migliorare."
+	text: "Questo è solo un piccolissimo ringraziamento alla persona che con il suo carattere solare, tranquillo, umile ma determinato, mi ha ispirato a migliorare."
 },
 
 {
 	id: 33,
-	text: "...."
+	text: "Grazie :)"
 }
 
 ];

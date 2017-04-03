@@ -30,6 +30,7 @@ This project has been created with the objective of implementing modular javascr
 - [Webpack](https://webpack.github.io/)
 - [Babel](https://babeljs.io/)
 - [NoSleep.js](https://github.com/BHSPitMonkey/NoSleep.js)
+- [animate.css](https://daneden.github.io/animate.css/)
 
 
 

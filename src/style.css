@@ -1,6 +1,6 @@
 html{
-  overflow: hidden;
   height: 100%;
+  overflow: auto;
 }
 
 body{
@@ -50,6 +50,13 @@ h3{
 
 h3:fullscreen{
   font-family: 'Crimson Text', serif;
+}
+
+#main {
+
+}
+#main > h3 {
+  margin-top: 35px;
 }
 
 #extra{
@@ -176,6 +183,10 @@ h3:fullscreen{
 }
 .pointerCursor{
   cursor: pointer;
+}
+
+.spaceMaker{
+  margin-bottom: 250px;
 }
 
 @-webkit-keyframes colorChange{

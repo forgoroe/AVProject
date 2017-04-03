@@ -21,7 +21,7 @@ export var contentGrabber = (function(){
 	}
 
 	function contentIsAvailable(){
-		return getContentGrabbed() < getContentLength();
+		return getContentGrabbed() != getContentLength();
 	}
 
 	return {

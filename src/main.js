@@ -3,7 +3,7 @@ import { moreAnimations } from "./scripts/moreAnimations";
 import { presentation } from "./scripts/presentation";
 import NoSleep from "nosleep";
 
-(function(){
+window.onload = (function(){
 
   var noSleep = new NoSleep();
 
@@ -54,11 +54,10 @@ let intro = {
 
   animateIntro: function(){
 
-      let str = "A volte...";
+      let str = "A volte ...";
       let amount = 3;
       let delay = 8;
       let count = phraseCreator.getShortestPhraseLength()*2;
-      let icon = '<i class="fa fa-envelope" aria-hidden="true"></i>';
       let iconIsSet = false;
       let html = ''
 

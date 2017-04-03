@@ -11,81 +11,93 @@ export var presentation = (function(){
 
 	function rollPresentation() {
 		$('body').empty();
+		
 		const initialColumnId = 'main';
 
 		setupper.setUpElements(initialColumnId);
+		window.scrollTo(0,0);
 
 		insertSegment();
+		
 	};
-
+	/**
+	 * Start a timer at the beginning of each segment
+	 * @return {undefined}
+	 */
 	function startTimer(){
 		clearInterval(timer);
 		let secondsPassed = 0;
 		timer = setInterval(()=> console.log(++secondsPassed + " seconds"), 1000);
 	};
 
-	/**
+	/** 
 	 * Inserts next segment.
 	 * @param {Number} nextOrPrevious
 	 * @return {undefined}
 	 */
 	function insertSegment() {
+
 		
 		startTimer();
 		
 		let idOfNext;
-		let idOfPreviousToRemove; 
+		let idOfPrevious; 
 		let nextUp;
 		
 		idOfNext = contentGrabber.getContentGrabbed();
-		idOfPreviousToRemove = idOfNext - 1;
+		idOfPrevious = idOfNext - 1;
 		nextUp = contentGrabber.giveNext().text;
 	
+		preventAccident(idOfPrevious, idOfNext);
+
 		//normalise autoNext timer
 		resetAutoNext(defaultSecondsBeforeNext);
 		
-		unbindEventFrom($('body'));
-
-		
 		//removing and re-adding element to restart css animation
-		$('#' + idOfPreviousToRemove).remove();
+
+		$('#' + idOfPrevious).removeClass('spaceMaker');
 
 		let $contentSelector = setupper.setUpH3($('#main'), idOfNext);
 
 		console.log("Section number: " + idOfNext);
-
+	
 		if ($contentSelector.attr('id') == 0) {
 			$contentSelector.html(nextUp)
 				.removeClass()
 				.addClass('disable-select')
+				.addClass('spaceMaker')
 				.addClass('firstTurn');
 		} else {
 			$contentSelector.html(nextUp)
 				.removeClass()
 				.addClass('disable-select')
+				.addClass('spaceMaker')
 				.addClass('yourTurn');
 		}
-        window.scrollTo(0,(document.body.scrollHeight)*0.5);
 
-		
+		if(document.getElementById(idOfNext)){ 
+      		document.getElementById(idOfNext).scrollIntoView(); 
+    	} 
+	
 		doMoreBasedOn($contentSelector);
 
-		accidentPreventer();
 
 	};
 
-	function insertPrevious(){
-		
-	
-
+	function stop(){
+		clearInterval(autoNext);
 	};
 
-	function accidentPreventer(){
-		//prevent user from accidentally clicking next more than once; reload page if no more content available.
+	/**
+	 * Prevents user from accidentally clicking next more than once; reload page if no more content available.
+	 * @return {undefined}
+	 */
+	function preventAccident(idOfPrevious, idOfNext){
+		unbindEventFrom($('#'+idOfPrevious));
 		if(contentGrabber.contentIsAvailable()){
-			setTimeout(() => {
-				bindEventToContent($('body'))
-			}, 1000);
+				setTimeout(()=>{
+					bindEventToContent($('#'+idOfNext));
+				},1800);
 		} else {
 			setTimeout(()=>{
 				location.reload(false);
@@ -94,7 +106,11 @@ export var presentation = (function(){
 		}
 	};
 
-
+	/**
+	 * Sets interval timer to call insertSegment sooner or later than default
+	 * @param  {time in milliseconds}
+	 * @return {[type]}
+	 */
 	function resetAutoNext(secondsBeforeNext) {
 		clearInterval(autoNext);
 		autoNext = setInterval(insertSegment, secondsBeforeNext);
@@ -109,21 +125,23 @@ export var presentation = (function(){
 	function unbindEventFrom($nodeToUnbind) {
 		$nodeToUnbind.removeClass('pointerCursor');
 		$nodeToUnbind.addClass('defaultCursor');
-		$nodeToUnbind.unbind('click');
-		$nodeToUnbind.unbind('keyup');
+		$nodeToUnbind.off('click');
+		$nodeToUnbind.off('keyup');
 		
 	};
 
 
-	//using setTimeOut to not overwrite the yourTurn animation or simply animate at a specific time
+	/** 
+	 * Accepts a jQuery DOM element to regulate animations/timing based on its ID
+	 * @param  {$selector}
+	 * @return {[type]}
+	 */
 	function doMoreBasedOn($selector) {
 		let timeBeforeNext = defaultSecondsBeforeNext;
+		let stillAnimating;
 		
-
 		switch ($selector.attr('id')) {
-
 			case '0':
-
 				$('html').addClass('neutralBackground');
 				$('body').addClass('neutralBackground');
 
@@ -158,6 +176,7 @@ export var presentation = (function(){
 					$selector.addClass('animated')
 						.addClass('fadeOutDown')
 						.css('animation-duration', '4s')
+						.css('animation-fill-mode', 'none');
 				}, 4000);
 
 				timeBeforeNext = 8 * 1000;
@@ -167,17 +186,21 @@ export var presentation = (function(){
 
 			case '4':
 
+				$selector.removeClass('spaceMaker');
+
 				let $row = setupper.setUpRow($('.container'))
 				let $col = setupper.setUpCol($row, 'secondary');
 				let $h3 = setupper.setUpH3($col, 'extra');
 
-
+				$h3.addClass('spaceMaker');
 				moreAnimations.animateWordsOnto($h3);
 
 
 				break;
 
 			case '5':
+
+				$selector.removeClass('spaceMaker');
 
 				timeBeforeNext = 10 * 1000;
 				resetAutoNext(timeBeforeNext);
@@ -187,24 +210,21 @@ export var presentation = (function(){
 			case '6':
 
 
-
 				break;
 
 			case '7':
 
-				timeBeforeNext = 3 * 1000;
-				resetAutoNext(timeBeforeNext);
-
+				stop();
+				setTimeout(rollPresentation, 1.7*1000);
 
 				break;
-
 			case '8':
 
 				setTimeout(() => {
-					$selector.addClass('animated')
-						.addClass('pulse')
-						.css('animation-duration', '2s')
-				}, 400);
+				   $selector.addClass('animated')
+							.addClass('pulse')
+							.css('animation-duration', '2s');
+					}, 400);
 
 				timeBeforeNext = 5 * 1000;
 				resetAutoNext(timeBeforeNext);
@@ -213,13 +233,7 @@ export var presentation = (function(){
 
 			case '9':
 
-				nineThroughTwelve += $selector.html() + ' ';
-				$selector.html(nineThroughTwelve)
-						 .removeClass()
-						 .addClass('disable-select')
-						 .addClass('yourTurn');
-
-				timeBeforeNext = 0.6 * 1000;
+				timeBeforeNext = 1 * 1000;
 				resetAutoNext(timeBeforeNext);
 
 
@@ -227,12 +241,7 @@ export var presentation = (function(){
 
 			case '10':
 
-				nineThroughTwelve += $selector.html() + ' ';
-				$selector.html(nineThroughTwelve)
-						 .removeClass()
-						 .addClass('disable-select')
-
-				timeBeforeNext = 0.6 * 1000;
+				timeBeforeNext = 1 * 1000;
 				resetAutoNext(timeBeforeNext);
 
 
@@ -240,23 +249,13 @@ export var presentation = (function(){
 
 			case '11':
 
-				nineThroughTwelve += $selector.html() + ' ';
-				$selector.html(nineThroughTwelve)
-						 .removeClass()
-						 .addClass('disable-select')
-
-				timeBeforeNext = 0.6 * 1000;
+				timeBeforeNext = 1 * 1000;
 				resetAutoNext(timeBeforeNext);
 
 
 				break;
 
 			case '12':
-
-				nineThroughTwelve += $selector.html() + ' ';
-					$selector.html(nineThroughTwelve)
-							 .removeClass()
-							 .addClass('disable-select')
 
 				timeBeforeNext = 1.5 * 1000;
 				resetAutoNext(timeBeforeNext);
@@ -265,21 +264,21 @@ export var presentation = (function(){
 
 			case '13':
 
-				timeBeforeNext = 4 * 1000;
+				timeBeforeNext = 3 * 1000;
 				resetAutoNext(timeBeforeNext);
 
 				break;
 
 			case '14':
 
-				timeBeforeNext = 5 * 1000;
+				timeBeforeNext = 4 * 1000;
 				resetAutoNext(timeBeforeNext);
 
 				break;
 
 			case '15':
 
-				timeBeforeNext = 6 * 1000;
+				timeBeforeNext = 5 * 1000;
 				resetAutoNext(timeBeforeNext);
 
 				break;
@@ -333,6 +332,29 @@ export var presentation = (function(){
 				resetAutoNext(timeBeforeNext);
 
 				break;
+
+			case '26':
+
+			$selector.css('font-family', 'PT Serif, serif')
+					 .css('font-style', 'italic');
+
+			break;
+
+			case '27':
+			
+				stop();
+				rollPresentation();
+				
+			break;
+
+			case '28':
+
+			case '29':
+
+			timeBeforeNext = 5 * 1000;
+			resetAutoNext(timeBeforeNext);
+
+			break;
 
 		}
 	};
