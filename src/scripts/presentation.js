@@ -5,16 +5,18 @@ import { moreAnimations } from './moreAnimations';
 export var presentation = (function(){
 
 	const defaultSecondsBeforeNext = 8 * 1000;
+	
 	var autoNext;
 	var timer;
 	var nineThroughTwelve = '';
 
-	function rollPresentation() {
+	function rollPresentation(language) {
 		$('body').empty();
-		
+		contentGrabber.setLanguage(language);
 		const initialColumnId = 'main';
 
 		setupper.setUpElements(initialColumnId);
+		
 		window.scrollTo(0,0);
 
 		insertSegment();

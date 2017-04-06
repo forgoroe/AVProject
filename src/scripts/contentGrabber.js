@@ -1,7 +1,23 @@
-import { content } from './content';
+import { content as itaContent } from './content';
+import { content as engContent  } from './engContent';
 
 export var contentGrabber = (function(){
 	var contentGrabbed = 0;
+	var content = engContent; //default english
+
+	function setLanguage(language){
+		switch(language){
+			case 'english':
+			content = engContent;
+
+			break;
+			
+			case 'italian':
+			content = itaContent;
+
+			break;
+		}
+	};
 	
 	function giveNext(id) {
 		if (id && id < content.length) {
@@ -28,7 +44,8 @@ export var contentGrabber = (function(){
 		giveNext: giveNext,
 		getContentLength: getContentLength,
 		getContentGrabbed: getContentGrabbed,
-		contentIsAvailable: contentIsAvailable
+		contentIsAvailable: contentIsAvailable,
+		setLanguage: setLanguage
 
 	};
 })();

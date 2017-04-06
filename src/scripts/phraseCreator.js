@@ -1,16 +1,34 @@
 export var phraseCreator = (function(){
   
-  var words = (" Dolce volto, Occhi, Sorriso, Capelli soffici, Adorabile, "+
+  var itaWords = (" Dolce volto, Occhi, Sorriso, Capelli soffici, Adorabile, "+
          "Bella, Attraente, Piccola, Sicurezza, Una vita condivisa, Parlare, "+
          "Risate, Affetto, Mano nella mano, Abbraccio di cinque minuti, Stima, Speranza, "+
          "Fiducia contagiosa, Mistero, Voglia di vivere, Conoscere ancora, Tutta da vivere....");
+
+  var engWords = 'Sweet face, Eyes, Smile, Soft hair, Adorable, Beautiful, Attractive, Little, Assurance, A share life, Talking, Laughing, '+
+        "Affection, Hand in hand, Five minute hug, Esteem, Hope, Infectious trust, Mystery, Will to live, Know more, Live her fully....";
   
-  
+
+  var words = engWords;
   var dictionary = _createDictionary(words);
   var shortestLength = _findShortestPhraseLength(dictionary);  
 
   var counter = 0;
   var shuffledDictionary = _shuffleDictionary(dictionary);
+
+ function setLanguage(language){
+    switch(language){
+      case 'english':
+      words = engWords;
+      _createDictionary(words);
+      break;
+      
+      case 'italian':
+      words = itaWords;
+      _createDictionary(words);
+      break;
+    }
+  };
 
   function _createDictionary(text){
     dictionary = [];
@@ -43,8 +61,8 @@ export var phraseCreator = (function(){
     return tempDictionary;
   }
 
-  function _findShortestPhraseLength(dictionaryArg){
-    var shortest = dictionaryArg.reduce(function(a, b) {
+  function _findShortestPhraseLength(){
+    var shortest = dictionary.reduce(function(a, b) {
     return a.length <= b.length ? a : b;
     });
     return shortest.length;
@@ -72,7 +90,8 @@ export var phraseCreator = (function(){
     getRandomPhrase: getRandomPhrase,
     getShortestPhraseLength: getShortestPhraseLength,
     getDictionary: getDictionary,
-    getNextInDictionary: getNextInDictionary
+    getNextInDictionary: getNextInDictionary,
+    setLanguage: setLanguage
   }
 
 })();

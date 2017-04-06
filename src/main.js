@@ -6,6 +6,7 @@ import NoSleep from "nosleep";
 window.onload = (function(){
 
   var noSleep = new NoSleep();
+  var language = 'english';
 
   function enableNoSleep() {
     noSleep.enable(9999999);
@@ -33,6 +34,7 @@ let intro = {
   init: function(){
     this.cacheIntroDom();
     this.bindEvents();
+    phraseCreator.setLanguage(language);
     this.animateIntro();
   },
 
@@ -48,18 +50,21 @@ let intro = {
         enableNoSleep();
         clearInterval(intro.buttonAnimation);
         fullScreen();
-        presentation.rollPresentation();
+        presentation.rollPresentation(language);
       });
   },
 
   animateIntro: function(){
 
       let str = "A volte ...";
+      let subtitle = language == 'english' ? ('... The power of inspiration') : ("... Il potere dell'ispirazione");
       let amount = 3;
       let delay = 8;
       let count = phraseCreator.getShortestPhraseLength()*2;
       let iconIsSet = false;
       let html = ''
+      
+      this.$subtitle.html(subtitle);
 
       let gen = setInterval(function() {
         intro.$el.attr('data-before', phraseCreator.getRandomPhrase(amount));
@@ -89,6 +94,7 @@ let intro = {
         }
       }, 180);
 
+    
     moreAnimations.animateSubtitle(this.$subtitle);
     this.buttonAnimation = moreAnimations.animateButton($(this.$btn));
   }
